@@ -10,7 +10,7 @@ If you want to be explicit, use `flutterw()`.
 ## Installation
 
 ```bash
-<cli> plugins install flutterw_sidekick_plugin
+<cli> sidekick plugins install flutterw_sidekick_plugin
 ```
 
 ## License

@@ -60,8 +60,8 @@ Future<void> main() async {
 
   print(green('Successfully installed flutterw'));
   print('\nUsage: You can now execute the commands:\n'
-      '- ${cliNameOrNull ?? '<cli>'} flutter\n'
-      '- ${cliNameOrNull ?? '<cli>'} dart\n'
+      '- ${package.cliName} flutter\n'
+      '- ${package.cliName} dart\n'
       'to run flutter or dart commands with the pinned Flutter SDK.');
 }
 
