@@ -4,12 +4,13 @@ Pins a Flutter version with [`flutter_wrapper`](https://github.com/passsy/flutte
 - `<cli> flutter` - runs the pinned Flutter version
 - `<cli> dart` - runs the pinned Dart version
 
-For integration into your own commands use the `flutterw` and `dart` executables.
+You can continue using the `flutter()` and `dart()` functions in your scripts, because `flutterSdkPath: '.flutter'` binds the pinned SDK. 
+If you want to be explicit, use `flutterw()`.
 
 ## Installation
 
 ```bash
-<YourSidekickCli> plugins install flutterw_sidekick_plugin
+<cli> plugins install flutterw_sidekick_plugin
 ```
 
 ## License
