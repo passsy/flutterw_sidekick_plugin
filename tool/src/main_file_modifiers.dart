@@ -39,9 +39,7 @@ extension MainFileModifiers on ModifiableSourceFile {
     final position = after?.end ?? imports.lastOrNull?.end ?? 0;
     // TODO only add if import does not yet exist
 
-    final content = file.readAsStringSync();
-    final update = content.replaceRange(position, position, '\n$import');
-    file.writeAsStringSync(update);
+    addModification(CodeModification(position, position, '\n$import'));
   }
 }
 
