@@ -57,6 +57,12 @@ Future<void> main() async {
       command: 'DartCommand()',
     );
   }
+
+  print(green('Successfully installed flutterw'));
+  print('\nUsage: You can now execute the commands:\n'
+      '- ${cliNameOrNull ?? '<cli>'} flutter\n'
+      '- ${cliNameOrNull ?? '<cli>'} dart\n'
+      'to run flutter or dart commands with the pinned Flutter SDK.');
 }
 
 /// Installs the [flutter_wrapper](https://github.com/passsy/flutter_wrapper) in
@@ -65,6 +71,7 @@ Future<File> installFlutterWrapper(Directory directory) async {
   writeAndRunShellScript(
     r'sh -c "$(curl -fsSL https://raw.githubusercontent.com/passsy/flutter_wrapper/master/install.sh)"',
     workingDirectory: directory,
+    progress: Progress.devNull(),
   );
   final exe = directory.file('flutterw');
   assert(exe.existsSync());
