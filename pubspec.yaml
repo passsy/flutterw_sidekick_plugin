@@ -1,6 +1,8 @@
 name: flutterw_sidekick_plugin
-description: Generated sidekick plugin (template shared-command)
+description: Sidekick plugin that installs flutter_wrapper in the repository and links it to the flutter and dart commands
 version: 0.1.0
+repository: https://github.com/passsy/flutterw_sidekick_plugin
+issue_tracker: https://github.com/passsy/flutterw_sidekick_plugin/issues
 
 environment:
   sdk: '>=2.14.0 <3.0.0'
