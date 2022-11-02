@@ -1,8 +1,9 @@
-import 'package:flutterw_sidekick_plugin/src/initialize_sidekick.dart';
 import 'package:sidekick_core/sidekick_core.dart'
     hide cliName, repository, mainProject;
 import 'package:sidekick_core/sidekick_core.dart';
 import 'package:sidekick_plugin_installer/sidekick_plugin_installer.dart';
+
+import 'src/initialize_sidekick.dart';
 
 Future<void> main() async {
   final SidekickPackage package = PluginContext.sidekickPackage;
@@ -22,8 +23,10 @@ Future<void> main() async {
     throw "Could not find file ${mainFile.path} to register the dart commands";
   }
 
-  findInitializeSidekick(mainFile)
-      .addFlutterSdkPath("findRepository().root.directory('.flutterw').path");
+  addFlutterSdkPath(
+    mainFile,
+    "findRepository().root.directory('.flutterw').path",
+  );
 
   // Usually the Flutter and Dart command from sidekick_core are already present
   // Add them in case they are not

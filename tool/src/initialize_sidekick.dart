@@ -1,45 +1,26 @@
-import 'package:analyzer/dart/analysis/analysis_context.dart';
-import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
 import 'package:analyzer/dart/analysis/results.dart';
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:analyzer/dart/ast/token.dart';
 import 'package:analyzer/dart/ast/visitor.dart';
-import 'package:flutterw_sidekick_plugin/src/modifiable_source_file.dart';
 import 'package:sidekick_core/sidekick_core.dart';
 
-/// Finds the [initializeSidekick] method and allows modifications
-InitializeSidekickMethod findInitializeSidekick(File file) {
-  return InitializeSidekickMethod(file)..locate();
-}
+import 'modifiable_source_file.dart';
 
-class InitializeSidekickMethod {
-  final File file;
-
-  AnalysisContext? context;
-
-  InitializeSidekickMethod(this.file);
-
-  void locate() {
-    final collection = AnalysisContextCollection(includedPaths: [file.path]);
-
-    context = collection.contextFor(file.path);
-  }
-
-  void addFlutterSdkPath(String path) {
-    final ModifiableSourceFile source = ModifiableSourceFile(file);
-    final initializeSidekickMethod = source
-        .analyze()
-        .nodes
-        .whereType<MethodInvocation>()
-        .firstWhere((node) => node.methodName.name == 'initializeSidekick');
-    setNamedParameter(
-      source,
-      initializeSidekickMethod,
-      name: 'flutterSdkPath',
-      value: path,
-    );
-    file.writeAsStringSync(source.content);
-  }
+/// Finds the [initializeSidekick] method and sets the sdk path
+void addFlutterSdkPath(File file, String path) {
+  final ModifiableSourceFile source = ModifiableSourceFile(file);
+  final initializeSidekickMethod = source
+      .analyze()
+      .nodes
+      .whereType<MethodInvocation>()
+      .firstWhere((node) => node.methodName.name == 'initializeSidekick');
+  setNamedParameter(
+    source,
+    initializeSidekickMethod,
+    name: 'flutterSdkPath',
+    value: path,
+  );
+  source.flush();
 }
 
 /// Adds or updates a named parameter of [methodInvocation]

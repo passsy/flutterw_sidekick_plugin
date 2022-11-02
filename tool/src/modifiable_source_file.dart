@@ -44,6 +44,15 @@ class ModifiableSourceFile {
     _tempDir?.deleteSync(recursive: true);
   }
 
+  void flush() {
+    file.writeAsStringSync(content);
+    _unit = null;
+    _modifications.clear();
+    if (_tempFile != null && _tempFile!.existsSync()) {
+      _tempFile!.deleteSync();
+    }
+  }
+
   ParsedUnitResult? _unit;
 
   ParsedUnitResult analyze() {
@@ -51,6 +60,8 @@ class ModifiableSourceFile {
       return _unit!;
     }
 
+    // create a temp file that is observed by the analysis server,
+    // in memory source code doesn't do it
     _updateTempFile();
 
     final file = _tempFile!;

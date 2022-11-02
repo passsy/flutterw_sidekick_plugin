@@ -1,11 +1,12 @@
 import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
 import 'package:analyzer/dart/analysis/results.dart';
 import 'package:analyzer/dart/ast/ast.dart';
-import 'package:flutterw_sidekick_plugin/src/initialize_sidekick.dart';
-import 'package:flutterw_sidekick_plugin/src/modifiable_source_file.dart';
 import 'package:indent/indent.dart';
 import 'package:sidekick_core/sidekick_core.dart';
 import 'package:test/test.dart';
+
+import '../tool/src/initialize_sidekick.dart';
+import '../tool/src/modifiable_source_file.dart';
 
 void main() {
   test('add first parameter', () {
