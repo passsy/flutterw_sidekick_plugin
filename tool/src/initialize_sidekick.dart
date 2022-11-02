@@ -23,6 +23,19 @@ void addFlutterSdkPath(File file, String path) {
   source.flush();
 }
 
+void registerSdkInitializer(File file, String block) {
+  final ModifiableSourceFile source = ModifiableSourceFile(file);
+  final initializeSidekickMethod = source
+      .analyze()
+      .nodes
+      .whereType<MethodInvocation>()
+      .firstWhere((node) => node.methodName.name == 'initializeSidekick');
+
+  final methodEnd = initializeSidekickMethod.semicolon!.end;
+  source.addModification(CodeModification(methodEnd, methodEnd, '\n  $block'));
+  source.flush();
+}
+
 /// Adds or updates a named parameter of [methodInvocation]
 void setNamedParameter(
   ModifiableSourceFile sourceFile,
@@ -115,4 +128,22 @@ class _AllNodesVisitor extends BreadthFirstVisitor<void> {
     onNode(node);
     super.visitNode(node);
   }
+}
+
+extension on Token {
+  Iterable<Token> nextTokens() sync* {
+    Token? token = this;
+    while (token != null) {
+      token = token.next;
+      if (token != null) {
+        yield token;
+      }
+    }
+  }
+}
+
+extension on MethodInvocation {
+  Token? get semicolon => endToken
+      .nextTokens()
+      .firstOrNullWhere((token) => token.type == TokenType.SEMICOLON);
 }
