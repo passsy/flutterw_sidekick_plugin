@@ -1,4 +1,6 @@
-## Flutter Wrapper Sidekick Plugin (`flutterw_sidekick_plugin`)
+## Flutter Wrapper Sidekick Plugin
+
+Plugin for [phntmxyz/sidekick](https://github.com/phntmxyz/sidekick)
 
 Pins a Flutter version with [`flutter_wrapper`](https://github.com/passsy/flutter_wrapper) and exposes two commands via the Sidekick CLI:
 - `<cli> flutter` - runs the pinned Flutter version
