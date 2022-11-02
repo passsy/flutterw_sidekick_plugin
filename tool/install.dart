@@ -3,7 +3,8 @@ import 'package:sidekick_core/sidekick_core.dart'
 import 'package:sidekick_core/sidekick_core.dart';
 import 'package:sidekick_plugin_installer/sidekick_plugin_installer.dart';
 
-import 'src/initialize_sidekick.dart';
+import 'src/main_file_modifiers.dart';
+import 'src/modifiable_source_file.dart';
 import 'src/require_dependency_version.dart';
 
 Future<void> main() async {
@@ -30,16 +31,16 @@ Future<void> main() async {
     'sidekick_core',
     VersionConstraint.parse('>=0.11.0'),
   );
-  registerSdkInitializer(
-    mainFile,
-    'addFlutterSdkInitializer(initializeFlutterWrapper);',
-  );
-  addImport(
-    mainFile,
+
+  final ModifiableSourceFile mainSourceFile = ModifiableSourceFile(mainFile);
+  mainSourceFile.addFlutterSdkPath("'.flutter'"); // relative to repo root
+  mainSourceFile.addImport(
     "import 'package:flutterw_sidekick_plugin/flutterw_sidekick_plugin.dart';",
   );
-  // relative to repo root
-  addFlutterSdkPath(mainFile, "'.flutter'");
+  mainSourceFile.registerSdkInitializer(
+    'addFlutterSdkInitializer(initializeFlutterWrapper);',
+  );
+  mainSourceFile.flush();
 
   // Usually the Flutter and Dart command from sidekick_core are already present
   // Add them in case they are not

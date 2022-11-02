@@ -1,6 +1,7 @@
+import 'package:pub_semver/pub_semver.dart';
 import 'package:sidekick_core/sidekick_core.dart';
 import 'package:yaml/yaml.dart';
-import 'package:pub_semver/pub_semver.dart';
+
 export 'package:pub_semver/pub_semver.dart';
 
 void requireDependencyVersion(
@@ -13,8 +14,12 @@ void requireDependencyVersion(
     return;
   }
   final yaml = loadYamlDocument(lockFile.readAsStringSync());
-  final rawConstraint =
-      (yaml.contents as YamlMap)['packages'][dependency]['version'] as String;
+  final rawConstraint = (((yaml.contents as YamlMap?)?['packages']
+      as YamlMap?)?[dependency] as YamlMap?)?['version'] as String?;
+  if (rawConstraint == null) {
+    // no version for package found
+    return;
+  }
   final depConstraint = VersionConstraint.parse(rawConstraint);
 
   if (!depConstraint.allowsAll(depConstraint)) {

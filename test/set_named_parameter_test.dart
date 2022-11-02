@@ -5,7 +5,7 @@ import 'package:indent/indent.dart';
 import 'package:sidekick_core/sidekick_core.dart';
 import 'package:test/test.dart';
 
-import '../tool/src/initialize_sidekick.dart';
+import '../tool/src/main_file_modifiers.dart';
 import '../tool/src/modifiable_source_file.dart';
 
 void main() {

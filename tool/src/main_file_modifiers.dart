@@ -6,34 +6,43 @@ import 'package:sidekick_core/sidekick_core.dart';
 
 import 'modifiable_source_file.dart';
 
-/// Finds the [initializeSidekick] method and sets the sdk path
-void addFlutterSdkPath(File file, String path) {
-  final ModifiableSourceFile source = ModifiableSourceFile(file);
-  final initializeSidekickMethod = source
-      .analyze()
-      .nodes
-      .whereType<MethodInvocation>()
-      .firstWhere((node) => node.methodName.name == 'initializeSidekick');
-  setNamedParameter(
-    source,
-    initializeSidekickMethod,
-    name: 'flutterSdkPath',
-    value: path,
-  );
-  source.flush();
-}
+extension MainFileModifiers on ModifiableSourceFile {
+  /// Finds the [initializeSidekick] method and sets the sdk path
+  void addFlutterSdkPath(String path) {
+    final initializeSidekickMethod = analyze()
+        .nodes
+        .whereType<MethodInvocation>()
+        .firstWhere((node) => node.methodName.name == 'initializeSidekick');
+    setNamedParameter(
+      this,
+      initializeSidekickMethod,
+      name: 'flutterSdkPath',
+      value: path,
+    );
+  }
 
-void registerSdkInitializer(File file, String block) {
-  final ModifiableSourceFile source = ModifiableSourceFile(file);
-  final initializeSidekickMethod = source
-      .analyze()
-      .nodes
-      .whereType<MethodInvocation>()
-      .firstWhere((node) => node.methodName.name == 'initializeSidekick');
+  void registerSdkInitializer(String block) {
+    final initializeSidekickMethod = analyze()
+        .nodes
+        .whereType<MethodInvocation>()
+        .firstWhere((node) => node.methodName.name == 'initializeSidekick');
 
-  final methodEnd = initializeSidekickMethod.semicolon!.end;
-  source.addModification(CodeModification(methodEnd, methodEnd, '\n  $block'));
-  source.flush();
+    final methodEnd = initializeSidekickMethod.semicolon!.end;
+    addModification(CodeModification(methodEnd, methodEnd, '\n  $block'));
+  }
+
+  void addImport(String import) {
+    final imports = analyze().unit.directives.whereType<ImportDirective>();
+    // find position to insert import alphabetically
+    final after = imports
+        .firstOrNullWhere((line) => line.toSource().compareTo(import) > 0);
+    final position = after?.end ?? imports.lastOrNull?.end ?? 0;
+    // TODO only add if import does not yet exist
+
+    final content = file.readAsStringSync();
+    final update = content.replaceRange(position, position, '\n$import');
+    file.writeAsStringSync(update);
+  }
 }
 
 /// Adds or updates a named parameter of [methodInvocation]
