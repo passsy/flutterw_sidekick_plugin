@@ -21,8 +21,7 @@ void requireDependencyVersion(
     return;
   }
   final depConstraint = VersionConstraint.parse(rawConstraint);
-
-  if (!depConstraint.allowsAll(version)) {
+  if (!depConstraint.allowsAny(version)) {
     throw 'Require package:$dependency to support version $version but it is locked at version $depConstraint. Please upgrade package:$dependency';
   }
 }
