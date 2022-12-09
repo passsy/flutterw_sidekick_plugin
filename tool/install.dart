@@ -10,6 +10,12 @@ import 'src/require_dependency_version.dart';
 Future<void> main() async {
   final SidekickPackage package = PluginContext.sidekickPackage;
 
+  requireDependencyVersion(
+    package,
+    'sidekick_core',
+    VersionConstraint.parse('>=0.11.0'),
+  );
+
   final repoRoot = findRepository().root;
   installFlutterWrapper(repoRoot);
 
@@ -25,12 +31,6 @@ Future<void> main() async {
   if (!mainFile.existsSync()) {
     throw "Could not find file ${mainFile.path} to register the dart commands";
   }
-
-  requireDependencyVersion(
-    package,
-    'sidekick_core',
-    VersionConstraint.parse('>=0.11.0'),
-  );
 
   final ModifiableSourceFile mainSourceFile = ModifiableSourceFile(mainFile);
   mainSourceFile.addFlutterSdkPath("'.flutter'"); // relative to repo root
