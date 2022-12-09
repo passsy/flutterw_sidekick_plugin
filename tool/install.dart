@@ -19,12 +19,7 @@ Future<void> main() async {
   final repoRoot = findRepository().root;
   installFlutterWrapper(repoRoot);
 
-  if (PluginContext.localPlugin == null) {
-    pubAddDependency(package, 'flutterw_sidekick_plugin');
-  } else {
-    // For local development
-    pubAddLocalDependency(package, PluginContext.localPlugin!.root.path);
-  }
+  addSelfAsDependency();
   pubGet(package);
 
   final mainFile = package.cliMainFile;
