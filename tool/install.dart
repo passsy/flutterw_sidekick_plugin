@@ -19,6 +19,7 @@ Future<void> main() async {
   final repoRoot = findRepository().root;
   installFlutterWrapper(repoRoot);
 
+  print('Installing self ${env.entries}');
   addSelfAsDependency();
   pubGet(package);
 
