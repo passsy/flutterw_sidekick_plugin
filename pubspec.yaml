@@ -12,7 +12,7 @@ dependencies:
   sidekick_core: '>=0.10.0 <1.0.0'
 
 dev_dependencies:
-  analyzer: ^5.0.0
+  analyzer: '>=4.0.0 <6.0.0'
   dart_style: ^2.2.0
   indent: ^2.0.0
   lint: ^1.5.0
