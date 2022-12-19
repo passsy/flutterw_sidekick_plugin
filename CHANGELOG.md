@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.4
+
+- Widen `analyzer` constraints
+- Use new `addSelfAsDependency()` from `sidekick_plugin_installer: ^0.2.1`
+- Check compatibility before execution
+
 ## 0.1.3
 
 - Fix `sidekick_core` version constraint check (`>=0.11.0`) again f4777ea
