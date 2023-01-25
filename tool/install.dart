@@ -16,7 +16,13 @@ Future<void> main() async {
     VersionConstraint.parse('>=0.11.0'),
   );
 
-  final repoRoot = findRepository().root;
+  final repoRoot = SidekickContext.repository ??
+      () {
+        final projectRoot = SidekickContext.projectRoot;
+        // no git repo yet, create it
+        'git init -q'.start(workingDirectory: projectRoot.path);
+        return projectRoot;
+      }();
   installFlutterWrapper(repoRoot);
 
   addSelfAsDependency();

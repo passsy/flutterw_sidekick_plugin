@@ -1,7 +1,7 @@
 library flutterw_sidekick_plugin;
 
 import 'package:flutterw_sidekick_plugin/src/flutterw.dart';
-import 'package:sidekick_core/sidekick_core.dart' hide flutterw;
+import 'package:sidekick_core/sidekick_core.dart';
 
 export 'package:flutterw_sidekick_plugin/src/flutterw.dart';
 

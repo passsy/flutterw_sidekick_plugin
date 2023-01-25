@@ -10,8 +10,7 @@ int flutterw(
   dcli.Progress? progress,
 }) {
   // find closest flutterw
-  final searchStart =
-      mainProject?.root ?? Repository.cliPackageDir ?? repository.root;
+  final searchStart = mainProject?.root ?? SidekickContext.sidekickPackage.root;
   final flutterwParent =
       searchStart.findParent((dir) => dir.file('flutterw').existsSync());
   final flutterw = flutterwParent?.file('flutterw');
