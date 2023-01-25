@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.0
+- Update to `sidekick_core: ^1.0.0`
+- Optionally creates a git repo, when it doesn't exist yet
+
 ## 0.1.4
 
 - Widen `analyzer` constraints
