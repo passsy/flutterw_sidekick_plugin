@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1
+- Add topics
+- Add library documentation
+
 ## 0.2.0
 - Update to `sidekick_core: ^1.0.0`
 - Optionally creates a git repo, when it doesn't exist yet
