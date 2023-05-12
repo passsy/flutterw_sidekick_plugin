@@ -1,5 +1,3 @@
-import 'package:analyzer/dart/analysis/analysis_context_collection.dart';
-import 'package:analyzer/dart/analysis/results.dart';
 import 'package:analyzer/dart/ast/ast.dart';
 import 'package:indent/indent.dart';
 import 'package:sidekick_core/sidekick_core.dart';
@@ -82,13 +80,4 @@ ModifiableSourceFile _tempSourceFile(String content) {
   final file = dir.file('source.dart')..createSync();
   file.writeAsStringSync(content);
   return ModifiableSourceFile(file);
-}
-
-ParsedUnitResult analyzeFile(File file) {
-  final collection =
-      AnalysisContextCollection(includedPaths: [file.absolute.path]);
-  final context = collection.contextFor(file.absolute.path);
-  final parsedUnit = context.currentSession.getParsedUnit(file.absolute.path)
-      as ParsedUnitResult;
-  return parsedUnit;
 }
