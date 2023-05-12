@@ -1,3 +1,4 @@
+/// A Sidekick plugin that connects the flutterw script to the sidekick flutter command
 library flutterw_sidekick_plugin;
 
 import 'package:flutterw_sidekick_plugin/src/flutterw.dart';
