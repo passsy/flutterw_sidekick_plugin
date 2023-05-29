@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.0
+- Update to `sidekick_core: ^2.0.0` and Dart 3
+
 ## 0.2.1
 - Add topics
 - Add library documentation
