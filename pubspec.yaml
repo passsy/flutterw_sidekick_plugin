@@ -1,6 +1,6 @@
 name: flutterw_sidekick_plugin
 description: Sidekick plugin that installs flutter_wrapper in the repository and links it to the flutter and dart commands
-version: 1.0.0
+version: 1.1.0
 repository: https://github.com/passsy/flutterw_sidekick_plugin
 issue_tracker: https://github.com/passsy/flutterw_sidekick_plugin/issues
 topics:
@@ -14,7 +14,7 @@ environment:
 
 dependencies:
   dcli: ^2.2.0
-  sidekick_core: ^2.0.0-preview.1
+  sidekick_core: ^2.0.0
 
 dev_dependencies:
   analyzer: '>=4.0.0 <6.0.0'
