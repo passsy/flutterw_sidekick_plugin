@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.1
+- Fix topics
+
 ## 1.1.0
 - Switch to stable sidekick_core version
 
