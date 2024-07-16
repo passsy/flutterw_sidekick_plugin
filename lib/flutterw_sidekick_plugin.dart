@@ -6,8 +6,10 @@ import 'package:sidekick_core/sidekick_core.dart';
 
 export 'package:flutterw_sidekick_plugin/src/flutterw.dart';
 
-void initializeFlutterWrapper(Directory sdk) {
-  if (sdk.file('bin/flutter').existsSync()) {
+Future<void> initializeFlutterWrapper(SdkInitializerContext context) async {
+  final flutterSdkDir = context.flutterSdk;
+
+  if (flutterSdkDir?.file('bin/flutter').existsSync() == true) {
     // already initialized
     return;
   }

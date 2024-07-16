@@ -4,11 +4,11 @@ import 'package:sidekick_core/sidekick_core.dart';
 /// Executes Flutter CLI (flutter_tool) via flutter_wrapper
 ///
 /// https://github.com/passsy/flutter_wrapper
-int flutterw(
+Future<ProcessCompletion> flutterw(
   List<String> args, {
   Directory? workingDirectory,
   dcli.Progress? progress,
-}) {
+}) async {
   // find closest flutterw
   final searchStart = mainProject?.root ?? SidekickContext.sidekickPackage.root;
   final flutterwParent =
@@ -31,7 +31,7 @@ int flutterw(
       progress: progress,
       terminal: progress == null,
     );
-    return process.exitCode ?? -1;
+    return ProcessCompletion(exitCode: process.exitCode ?? -1);
   } else {
     final process = dcli.startFromArgs(
       flutterw.path,
@@ -41,7 +41,7 @@ int flutterw(
       progress: progress,
       terminal: progress == null,
     );
-    return process.exitCode ?? -1;
+    return ProcessCompletion(exitCode: process.exitCode ?? -1);
   }
 }
 

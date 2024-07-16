@@ -39,7 +39,7 @@ Future<void> main() async {
     "import 'package:flutterw_sidekick_plugin/flutterw_sidekick_plugin.dart';",
   );
   mainSourceFile.registerSdkInitializer(
-    'addFlutterSdkInitializer(initializeFlutterWrapper);',
+    'addSdkInitializer(initializeFlutterWrapper);',
   );
   mainSourceFile.flush();
 
