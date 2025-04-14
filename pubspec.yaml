@@ -11,18 +11,18 @@ topics:
   - fvm
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
+  sdk: '>=3.5.0 <4.0.0'
 
 dependencies:
-  dcli: ^4.0.4
-  sidekick_core: ^3.0.0-preview.1
+  dcli: ^7.0.2
+  sidekick_core: ^3.0.0-preview.5
 
 dev_dependencies:
   analyzer: '>=4.0.0 <7.0.0'
   dart_style: ^2.2.0
   indent: ^2.0.0
-  lint: '>=1.5.0 <=3.0.0'
+  lint: ^2.0.0
   pub_semver: ^2.1.2
-  sidekick_plugin_installer: ^1.2.1
+  sidekick_plugin_installer: ^1.3.0
   test: ^1.21.0
   yaml: ^3.1.1

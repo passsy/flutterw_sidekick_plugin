@@ -23,7 +23,7 @@ Future<void> main() async {
         'git init -q'.start(workingDirectory: projectRoot.path);
         return projectRoot;
       }();
-  installFlutterWrapper(repoRoot);
+  await installFlutterWrapper(repoRoot);
 
   addSelfAsDependency();
   pubGet(package);
@@ -47,13 +47,13 @@ Future<void> main() async {
   // Add them in case they are not
   final mainContent = mainFile.readAsStringSync();
   if (!mainContent.contains('FlutterCommand()')) {
-    registerPlugin(
+    await registerPlugin(
       sidekickCli: package,
       command: 'FlutterCommand()',
     );
   }
   if (!mainContent.contains('DartCommand()')) {
-    registerPlugin(
+    await registerPlugin(
       sidekickCli: package,
       command: 'DartCommand()',
     );

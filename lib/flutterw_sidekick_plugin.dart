@@ -14,5 +14,5 @@ Future<void> initializeFlutterWrapper(SdkInitializerContext context) async {
     return;
   }
   // initialize and download the flutter submodule by executing the `flutterw` bash script
-  flutterw(['--version']);
+  await flutterw(['--version']);
 }
