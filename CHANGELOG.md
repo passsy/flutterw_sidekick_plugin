@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.0
+- Update to `dcli: ^8.2.0`, `dart sdk: ^3.6.0`
+
 ## 1.2.0
 - Update for `sidekick_core: ^3.0.0`
 
