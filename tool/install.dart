@@ -25,8 +25,8 @@ Future<void> main() async {
       }();
   await installFlutterWrapper(repoRoot);
 
-  addSelfAsDependency();
-  pubGet(package);
+  await addSelfAsDependency();
+  await pubGet(package);
 
   final mainFile = package.cliMainFile;
   if (!mainFile.existsSync()) {
